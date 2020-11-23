@@ -183,7 +183,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                       })
             }
             break
-        case 'botstat': {
+        case 'botstatus': {
             const loadedMsg = await aruga.getAmountOfLoadedMessages()
             const chatIds = await aruga.getAllChatIds()
             const groups = await aruga.getAllGroups()
