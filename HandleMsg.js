@@ -57,7 +57,8 @@ let {
     ownerNumber, 
     groupLimit, 
     memberLimit,
-    prefix
+    prefix,
+    namabot
 } = setting
 
 const {
