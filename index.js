@@ -4,7 +4,7 @@ const options = require('./utils/options')
 const { color, messageLog } = require('./utils')
 const HandleMsg = require('./HandleMsg')
 
-const start = (aruga = new Client()) => {
+const start = (mcpr = new Client()) => {
     console.log(color(figlet.textSync('----------------', { horizontalLayout: 'default' })))
     console.log(color(figlet.textSync('MCPR BOT', { font: 'Ghost', horizontalLayout: 'default' })))
     console.log(color(figlet.textSync('----------------', { horizontalLayout: 'default' })))
@@ -12,77 +12,77 @@ const start = (aruga = new Client()) => {
     console.log(color('[~>>]'), color('BOT Redy!', 'green'))
 
     // Mempertahankan sesi agar tetap nyala
-    aruga.onStateChanged((state) => {
+    mcpr.onStateChanged((state) => {
         console.log(color('[~>>]', 'red'), state)
-        if (state === 'CONFLICT' || state === 'UNLAUNCHED') aruga.forceRefocus()
+        if (state === 'CONFLICT' || state === 'UNLAUNCHED') mcpr.forceRefocus()
     })
 
     // ketika bot diinvite ke dalam group
-    aruga.onAddedToGroup(async (chat) => {
-	const groups = await aruga.getAllGroups()
+    mcpr.onAddedToGroup(async (chat) => {
+	const groups = await mcpr.getAllGroups()
 	// kondisi ketika batas group bot telah tercapai,ubah di file settings/setting.json
 	if (groups.length > groupLimit) {
-	await aruga.sendText(chat.id, `Sorry, the group on this bot is full\nMax Group is: ${groupLimit}`).then(() => {
-	      aruga.leaveGroup(chat.id)
-	      aruga.deleteChat(chat.id)
+	await mcpr.sendText(chat.id, `Sorry, the group on this bot is full\nMax Group is: ${groupLimit}`).then(() => {
+          mcpr.leaveGroup(chat.id)
+	      mcpr.deleteChat(chat.id)
 	  }) 
 	} else {
 	// kondisi ketika batas member group belum tercapai, ubah di file settings/setting.json
 	    if (chat.groupMetadata.participants.length < memberLimit) {
-	    await aruga.sendText(chat.id, `Sorry, BOT comes out if the group members do not exceed ${memberLimit} people`).then(() => {
-	      aruga.leaveGroup(chat.id)
-	      aruga.deleteChat(chat.id)
+	    await mcpr.sendText(chat.id, `Sorry, BOT comes out if the group members do not exceed ${memberLimit} people`).then(() => {
+          mcpr.leaveGroup(chat.id)
+	      mcpr.deleteChat(chat.id)
 	    })
 	    } else {
-        await aruga.simulateTyping(chat.id, true).then(async () => {
-          await aruga.sendText(chat.id, `Hai minna~, Im Aruga BOT. To find out the commands on this bot type ${prefix}menu`)
+        await mcpr.simulateTyping(chat.id, true).then(async () => {
+          await mcpr.sendText(chat.id, `Hai minna~, Im ${prefix}. To find out the commands on this bot type ${prefix}menu`)
         })
 	    }
 	}
     })
 
     // ketika seseorang masuk/keluar dari group
-    aruga.onGlobalParicipantsChanged(async (event) => {
-        const host = await aruga.getHostNumber() + '@c.us'
+    mcpr.onGlobalParicipantsChanged(async (event) => {
+        const host = await mcpr.getHostNumber() + '@c.us'
         // kondisi ketika seseorang diinvite/join group lewat link
         if (event.action === 'add' && event.who !== host) {
-            await aruga.sendTextWithMentions(event.chat, `Hello, Welcome to the group @${event.who.replace('@c.us', '')} \n\nHave fun with us✨`)
+            await mcpr.sendTextWithMentions(event.chat, `Hello, Welcome to the group @${event.who.replace('@c.us', '')} \n\nHave fun with us✨`)
         }
         // kondisi ketika seseorang dikick/keluar dari group
         if (event.action === 'remove' && event.who !== host) {
-            await aruga.sendTextWithMentions(event.chat, `Good bye @${event.who.replace('@c.us', '')}, We'll miss you✨`)
+            await mcpr.sendTextWithMentions(event.chat, `Good bye @${event.who.replace('@c.us', '')}, We'll miss you✨`)
         }
     })
 
-    aruga.onIncomingCall(async (callData) => {
+    mcpr.onIncomingCall(async (callData) => {
         // ketika seseorang menelpon nomor bot akan mengirim pesan
-        await aruga.sendText(callData.peerJid, 'Maaf sedang tidak bisa menerima panggilan.\n\n-bot')
+        await mcpr.sendText(callData.peerJid, 'Maaf sedang tidak bisa menerima panggilan.\n\n-bot')
         .then(async () => {
             // bot akan memblock nomor itu
-            await aruga.contactBlock(callData.peerJid)
+            await mcpr.contactBlock(callData.peerJid)
         })
     })
 
     // ketika seseorang mengirim pesan
-    aruga.onMessage(async (message) => {
-        aruga.getAmountOfLoadedMessages() // menghapus pesan cache jika sudah 3000 pesan.
+    mcpr.onMessage(async (message) => {
+        mcpr.getAmountOfLoadedMessages() // menghapus pesan cache jika sudah 3000 pesan.
             .then((msg) => {
                 if (msg >= 3000) {
-                    console.log('[aruga]', color(`Loaded Message Reach ${msg}, cuting message cache...`, 'yellow'))
-                    aruga.cutMsgCache()
+                    console.log('[mcpr]', color(`Loaded Message Reach ${msg}, cuting message cache...`, 'yellow'))
+                    mcpr.cutMsgCache()
                 }
             })
-        HandleMsg(aruga, message)    
+        HandleMsg(mcpr, message)    
     
     })
 	
     // Message log for analytic
-    aruga.onAnyMessage((anal) => { 
+    mcpr.onAnyMessage((anal) => { 
         messageLog(anal.fromMe, anal.type)
     })
 }
 
 //create session
 create(options(true, start))
-    .then((aruga) => start(aruga))
+    .then((mcpr) => start(mcpr))
     .catch((err) => new Error(err))
