@@ -6,10 +6,10 @@ const HandleMsg = require('./HandleMsg')
 
 const start = (aruga = new Client()) => {
     console.log(color(figlet.textSync('----------------', { horizontalLayout: 'default' })))
-    console.log(color(figlet.textSync('ARUGA BOT', { font: 'Ghost', horizontalLayout: 'default' })))
+    console.log(color(figlet.textSync('MCPR BOT', { font: 'Ghost', horizontalLayout: 'default' })))
     console.log(color(figlet.textSync('----------------', { horizontalLayout: 'default' })))
-    console.log(color('[DEV]'), color('ArugaZ', 'yellow'))
-    console.log(color('[~>>]'), color('BOT Started!', 'green'))
+    console.log(color('[DEV]'), color('MCPR', 'red'))
+    console.log(color('[~>>]'), color('BOT Redy!', 'green'))
 
     // Mempertahankan sesi agar tetap nyala
     aruga.onStateChanged((state) => {
