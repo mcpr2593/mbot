@@ -35,7 +35,7 @@ const start = (mcpr = new Client()) => {
 	    })
 	    } else {
         await mcpr.simulateTyping(chat.id, true).then(async () => {
-          await mcpr.sendText(chat.id, `Hai minna~, Im ${prefix}. To find out the commands on this bot type ${prefix}menu`)
+          await mcpr.sendText(chat.id, `Hallo Sob~, Saya ${namabot}. To find out the commands on this bot type ${prefix}menu`)
         })
 	    }
 	}
