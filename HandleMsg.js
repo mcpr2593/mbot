@@ -168,7 +168,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
                 await mcpr.joinGroupViaLink(linkgrup)
                       .then(async () => {
                           await mcpr.sendText(from, 'Berhasil join grup via link!')
-                          await mcpr.sendText(chekgrup.id, `Hai minna~, Im mcpr BOT. To find out the commands on this bot type ${prefix}menu`)
+                          await mcpr.sendText(chekgrup.id, `Hai Sobb.., Saya *${namabot}*. To find out the commands on this bot type ${prefix}menu`)
                       })
             } else {
                 let cgrup = await mcpr.getAllGroups()
@@ -330,7 +330,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
         //Islam Command
         case 'listsurah':
             try {
-                axios.get('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/islam/surah.json')
+                axios.get('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/islam/surah.json')
                 .then((response) => {
                     let hehex = '╔══✪〘 List Surah 〙✪══\n'
                     for (let i = 0; i < response.data.data.length; i++) {
@@ -346,7 +346,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
             break
         case 'infosurah':
             if (args.length == 0) return mcpr.reply(from, `*_${prefix}infosurah <nama surah>_*\nMenampilkan informasi lengkap mengenai surah tertentu. Contoh penggunan: ${prefix}infosurah al-baqarah`, message.id)
-                var responseh = await axios.get('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/islam/surah.json')
+                var responseh = await axios.get('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/islam/surah.json')
                 var { data } = responseh.data
                 var idx = data.findIndex(function(post, index) {
                   if((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase())||(post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
@@ -358,7 +358,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
               break
         case 'surah':
             if (args.length == 0) return mcpr.reply(from, `*_${prefix}surah <nama surah> <ayat>_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahannya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}surah al-baqarah 1\n\n*_${prefix}surah <nama surah> <ayat> en/id_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahannya dalam bahasa Inggris / Indonesia. Contoh penggunaan : ${prefix}surah al-baqarah 1 id`, message.id)
-                var responseh = await axios.get('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/islam/surah.json')
+                var responseh = await axios.get('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/islam/surah.json')
                 var { data } = responseh.data
                 var idx = data.findIndex(function(post, index) {
                   if((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase())||(post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
@@ -387,7 +387,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
               break
         case 'tafsir':
             if (args.length == 0) return mcpr.reply(from, `*_${prefix}tafsir <nama surah> <ayat>_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahan dan tafsirnya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}tafsir al-baqarah 1`, message.id)
-                var responsh = await axios.get('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/islam/surah.json')
+                var responsh = await axios.get('https://raw.githubusercontent.com/arugarZ/grabbed-results/main/islam/surah.json')
                 var {data} = responsh.data
                 var idx = data.findIndex(function(post, index) {
                   if((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase())||(post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
@@ -408,7 +408,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
             if (args.length == 0) return mcpr.reply(from, `*_${prefix}ALaudio <nama surah>_*\nMenampilkan tautan dari audio surah tertentu. Contoh penggunaan : ${prefix}ALaudio al-fatihah\n\n*_${prefix}ALaudio <nama surah> <ayat>_*\nMengirim audio surah dan ayat tertentu beserta terjemahannya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}ALaudio al-fatihah 1\n\n*_${prefix}ALaudio <nama surah> <ayat> en_*\nMengirim audio surah dan ayat tertentu beserta terjemahannya dalam bahasa Inggris. Contoh penggunaan : ${prefix}ALaudio al-fatihah 1 en`, message.id)
               ayat = "ayat"
               bhs = ""
-                var responseh = await axios.get('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/islam/surah.json')
+                var responseh = await axios.get('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/islam/surah.json')
                 var surah = responseh.data
                 var idx = surah.data.findIndex(function(post, index) {
                   if((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase())||(post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
@@ -429,7 +429,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
                   } 
                   pesan = ""
                   if(isNaN(ayat)) {
-                    var responsih2 = await axios.get('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/islam/surah/'+nmr+'.json')
+                    var responsih2 = await axios.get('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/islam/surah/'+nmr+'.json')
                     var {name, name_translations, number_of_ayah, number_of_surah,  recitations} = responsih2.data
                     pesan = pesan + "Audio Quran Surah ke-"+number_of_surah+" "+name+" ("+name_translations.ar+") "+ "dengan jumlah "+ number_of_ayah+" ayat\n"
                     pesan = pesan + "Dilantunkan oleh "+recitations[0].name+" : "+recitations[0].audio_url+"\n"
@@ -532,7 +532,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
 			
         // Random Kata
         case 'fakta':
-            fetch('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/random/faktaunix.txt')
+            fetch('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/random/faktaunix.txt')
             .then(res => res.text())
             .then(body => {
                 let splitnix = body.split('\n')
@@ -544,7 +544,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
             })
             break
         case 'katabijak':
-            fetch('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/random/katabijax.txt')
+            fetch('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/random/katabijax.txt')
             .then(res => res.text())
             .then(body => {
                 let splitbijak = body.split('\n')
@@ -556,7 +556,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
             })
             break
         case 'pantun':
-            fetch('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/random/pantun.txt')
+            fetch('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/random/pantun.txt')
             .then(res => res.text())
             .then(body => {
                 let splitpantun = body.split('\n')
@@ -579,7 +579,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
         case 'anime':
             if (args.length == 0) return mcpr.reply(from, `Untuk menggunakan ${prefix}anime\nSilahkan ketik: ${prefix}anime [query]\nContoh: ${prefix}anime random\n\nquery yang tersedia:\nrandom, waifu, husbu, neko`, id)
             if (args[0] == 'random' || args[0] == 'waifu' || args[0] == 'husbu' || args[0] == 'neko') {
-                fetch('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/random/anime/' + args[0] + '.txt')
+                fetch('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/random/anime/' + args[0] + '.txt')
                 .then(res => res.text())
                 .then(body => {
                     let randomnime = body.split('\n')
@@ -596,7 +596,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
         case 'kpop':
             if (args.length == 0) return mcpr.reply(from, `Untuk menggunakan ${prefix}kpop\nSilahkan ketik: ${prefix}kpop [query]\nContoh: ${prefix}kpop bts\n\nquery yang tersedia:\nblackpink, exo, bts`, id)
             if (args[0] == 'blackpink' || args[0] == 'exo' || args[0] == 'bts') {
-                fetch('https://raw.githubusercontent.com/mcprZ/grabbed-results/main/random/kpop/' + args[0] + '.txt')
+                fetch('https://raw.githubusercontent.com/arugaZ/grabbed-results/main/random/kpop/' + args[0] + '.txt')
                 .then(res => res.text())
                 .then(body => {
                     let randomkpop = body.split('\n')
@@ -911,10 +911,10 @@ module.exports = HandleMsg = async (mcpr, message) => {
             const groupMem = await mcpr.getGroupMembers(groupId)
             let hehex = '╔══✪〘 Mention All 〙✪══\n'
             for (let i = 0; i < groupMem.length; i++) {
-                hehex += '╠➥'
+                hehex += '⚜'
                 hehex += ` @${groupMem[i].id.replace(/@c.us/g, '')}\n`
             }
-            hehex += '╚═〘 *A R U G A  B O T* 〙'
+            hehex += '╚═🔰 *${namabot}* 🔰'
             await mcpr.sendTextWithMentions(from, hehex)
             break
 		case 'simisimi':
