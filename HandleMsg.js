@@ -1014,8 +1014,8 @@ module.exports = HandleMsg = async (mcpr, message) => {
             const chatz = await mcpr.getAllChatIds()
             for (let idk of chatz) {
                 var cvk = await mcpr.getChatById(idk)
-                if (!cvk.isReadOnly) mcpr.sendText(idk, `〘 *${namabot} BOARDCAST* 〙\n\n${msg}`)
-                if (cvk.isReadOnly) mcpr.sendText(idk, `〘 *${namabot}  BOARDCAST* 〙\n\n${msg}`)
+                if (!cvk.isReadOnly) mcpr.sendText(idk, `🔰 *${namabot} BOARDCAST* 🔰\n\n${msg}`)
+                if (cvk.isReadOnly) mcpr.sendText(idk, `🔰 *${namabot}  BOARDCAST* 🔰\n\n${msg}`)
             }
             mcpr.reply(from, 'Broadcast Success!', id)
             break
