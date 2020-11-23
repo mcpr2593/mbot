@@ -50,8 +50,8 @@ const banned = JSON.parse(fs.readFileSync('./settings/banned.json'))
 const simi = JSON.parse(fs.readFileSync('./settings/simi.json'))
 const ngegas = JSON.parse(fs.readFileSync('./settings/ngegas.json'))
 const setting = JSON.parse(fs.readFileSync('./settings/setting.json'))
-const mcprytdl3 = 'https://mcprytdl.herokuapp.com/audio?id='
-const mcprytdl4 = 'https://mcprytdl.herokuapp.com/video?id='
+const mcprytdl3 = 'https://arugaytdl.herokuapp.com/audio?id='
+const mcprytdl4 = 'https://arugaytdl.herokuapp.com/video?id='
 
 let { 
     ownerNumber, 
@@ -715,7 +715,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
             break
         case 'play'://silahkan kalian custom sendiri jika ada yang ingin diubah
             if (args.length == 0) return mcpr.reply(from, `Untuk mencari lagu dari youtube\n\nPenggunaan: ${prefix}play judul lagu`, id)
-            axios.get(`https://mcprytdl.herokuapp.com/search?q=${body.slice(6)}`)
+            axios.get(`https://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`)
             .then(async (res) => {
                 await mcpr.sendFileFromUrl(from, `${res.data[0].thumbnail}`, ``, `Lagu ditemukan\n\nJudul: ${res.data[0].title}\nDurasi: ${res.data[0].duration}detik\nUploaded: ${res.data[0].uploadDate}\nView: ${res.data[0].viewCount}\n\nsedang dikirim`, id)
 				download(`${mcprytdl3}${res.data[0].id}`, './media/ytmp3.mp3', (err) => {
@@ -1044,7 +1044,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
 		
 		// Simi-simi function
 		if ((!isCmd && isGroupMsg && isSimi) && message.type === 'chat') {
-			axios.get(`https://mcprz.herokuapp.com/api/simisimi?kata=${encodeURIComponent(message.body)}&apikey=${apiSimi}`)
+			axios.get(`https://arugaz.herokuapp.com/api/simisimi?kata=${encodeURIComponent(message.body)}&apikey=${apiSimi}`)
 			.then((res) => {
 				if (res.data.status == 403) return mcpr.sendText(ownerNumber, `${res.data.result}\n\n${res.data.pesan}`)
 				mcpr.reply(from, `Simi berkata: ${res.data.result}`, id)
