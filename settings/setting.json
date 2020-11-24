@@ -1,7 +1,7 @@
 {
     "ownerNumber": "6281414250524@c.us",
     "memberLimit": 5,
-    "groupLimit": 5,
+    "groupLimit": 100,
     "prefix": "/",
     "namabot": "MCPR_BOT"
   }

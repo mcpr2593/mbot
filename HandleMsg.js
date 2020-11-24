@@ -914,7 +914,7 @@ module.exports = HandleMsg = async (mcpr, message) => {
                 hehex += '⚜'
                 hehex += ` @${groupMem[i].id.replace(/@c.us/g, '')}\n`
             }
-            hehex += '╚═🔰 *${namabot}* 🔰'
+            hehex += '╚═🔰 *MCPR_BOT* 🔰'
             await mcpr.sendTextWithMentions(from, hehex)
             break
 		case 'simisimi':
